@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen
 from newspaper import Article
 import io
+import nltk
 nltk.download('punkt')
 
 st.set_page_config(page_title='NewsWave📰 Read the Summarized News Articles', page_icon='./assets/newspaper.ico')
