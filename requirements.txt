@@ -5,3 +5,4 @@ streamlit
 beautifulsoup4
 protobuf==3.20.0
 jinja2>=3.0
+nltk
