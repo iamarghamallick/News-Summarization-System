@@ -5,7 +5,7 @@ from urllib.request import urlopen
 from newspaper import Article
 import io
 import nltk
-nltk.download('punkt')
+# nltk.download('punkt')
 
 st.set_page_config(page_title='NewsWave📰 Read the Summarized News Articles', page_icon='./assets/newspaper.ico')
 

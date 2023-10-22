@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>News Summerization System</title>
+    <link type="image/png" sizes="32x32" rel="icon" href="{{ url_for('static', filename='/images/favicon.png') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/scrollbar.css') }}">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg" style="background-color: #525991 !important;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">NewsWave</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="padding-right: 10px;">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/topics/world">WORLD</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/topics/nation">NATION</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/topics/business">BUSINESS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/topics/technology">TECH</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/topics/entertainment">ENTERTAINMENT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/topics/sports">SPORTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/topics/science">SCIENCE</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="bg-dark min-h-100 pb-5">
+        <div class="container">
+            <img class="w-100 mt-3" src="{{ url_for('static', filename='/images/newspaper.png') }}" alt="" srcset=""
+                style="border-radius: 50%;">
+            <h1 class="text-light text-center">Welcome to NewsWave📰 Read the Summarized News Articles</h1>
+            <form action="/search" method="POST" class="p-3">
+                <div class="form-group mb-3 form-content">
+                    <input name="topic" type="text" class="form-control" id="topic" placeholder="Search Topics"
+                        required>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+
+        {% block body %}
+
+        {% endblock body %}
+
+    </main>
+
+    <footer>
+        <p>News Summerization System &copy; Made with Flask by Mechine Learning Integrity</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

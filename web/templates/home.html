@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h2 class="text-center text-light pb-3">{{topic}}</h2>
+<div class="container home text-light">
+    {% for news in response %}
+    <div class="news-card">
+        <img src="{{news['news_image']}}" alt="" srcset="" loading="lazy">
+        <div class="accordion" id="accordionExample{{news['news_id']}}">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button text-light" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne{{news['news_id']}}" aria-expanded="true"
+                        aria-controls="collapseOne{{news['news_id']}}"
+                        style="background-color: #525991;">{{news['news_title']}}
+                    </button>
+                </h2>
+                <div id="collapseOne{{news['news_id']}}" class="accordion-collapse collapse show"
+                    data-bs-parent="#accordionExample{{news['news_id']}}">
+                    <div class="accordion-body bg-dark">
+                        {{news['news_summery']}}
+                        <br>
+                        <p class="font-weight-bold"><a class="text-warning font-weight-bold" target="_blank"
+                                href="{{news['news_link']}}">Read
+                                full
+                                article on
+                                {{news['news_source']}}</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="bg-success text-center">Published Date {{news['news_date']}}</p>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
