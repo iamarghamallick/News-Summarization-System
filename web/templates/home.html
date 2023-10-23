@@ -2,7 +2,9 @@
 
 {% block body %}
 
-<h2 class="text-center text-light pb-3">{{topic}}</h2>
+{% if response %}
+
+<h2 class="text-center text-light pb-3">Showing News for <strong>{{topic}}</strong></h2>
 <div class="container home text-light">
     {% for news in response %}
     <div class="news-card">
@@ -13,7 +15,7 @@
                     <button class="accordion-button text-light" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseOne{{news['news_id']}}" aria-expanded="true"
                         aria-controls="collapseOne{{news['news_id']}}"
-                        style="background-color: #525991;">{{news['news_title']}}
+                        style="background-color: #735d7e;">{{news['news_title']}}
                     </button>
                 </h2>
                 <div id="collapseOne{{news['news_id']}}" class="accordion-collapse collapse show"
@@ -33,6 +35,24 @@
         <p class="bg-success text-center">Published Date {{news['news_date']}}</p>
     </div>
     {% endfor %}
+
 </div>
+<div class="container mt-4">
+    <form action="{{request_url}}" method="POST">
+        <div class="load_more">
+            <input value="{{topic}}" name="topic" type="text" class="form-control" id="topic"
+                placeholder="Search Topics" hidden>
+            <label class="btn btn-light">Number of Articles ({{news_quantity}})</label>
+            <button type="submit" class="btn btn-primary">Go</button>
+        </div>
+        <input class="w-100" type="range" name="load_more_range" id="load_more_range" step="1" min="1" max="25"
+            value="{{news_quantity}}">
+        <div class="load_more text-light">
+            <span>1</span><span>5</span><span>10</span><span>15</span><span>20</span><span>25</span>
+        </div>
+    </form>
+</div>
+
+{% endif %}
 
 {% endblock %}

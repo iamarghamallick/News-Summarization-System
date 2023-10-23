@@ -46,7 +46,7 @@ def display_news(list_of_news, news_quantity):
         except Exception as e:
             print("Error:", e)
 
-        news_id = str(c) + 'newswave'
+        news_id = str(c) + 'NewsBits'
         news_title = news.title.text
         news_summery = news_data.summary
         news_source = news.source.text
@@ -65,47 +65,73 @@ def display_news(list_of_news, news_quantity):
 
         response.append(data_dict)
 
+        print(f"Fetched News {c}")
+
         if c >= news_quantity:
             break
-
         c += 1
-
-        print("============================================")
-        print(news_title)
-        print(news_image)
-        print(news_summery)
-        print(news_source)
-        print(news_link)
-        print(news_date)
 
     return response
 
+
 app = Flask(__name__)
 
-news_quantity = 10
+default_news_quantity = 2
 
-@app.route('/')
+
+@app.route('/', methods=["GET","POST"])
 def home_page():
-    news_list = fetch_top_news()
-    response = display_news(list_of_news=news_list,
-                            news_quantity=news_quantity)
-    return render_template('home.html', response=response, topic="Top Trending", news_quantity=news_quantity)
+    if request.method == "GET":
+        print("GET '/'")
+        news_list = fetch_top_news()
+        response = display_news(list_of_news=news_list,
+                                news_quantity=default_news_quantity)
+        return render_template('home.html', response=response, topic="Top Trending", news_quantity=default_news_quantity, request_url="/")
 
-@app.route('/topics/<string:topic>', methods=["GET"])
+    if request.method == "POST":
+        load_more_range = int(request.form.get('load_more_range'))
+        print(f"Loading more on '/' with news quantity: {load_more_range}")
+        news_list = fetch_top_news()
+        response = display_news(list_of_news=news_list,
+                                news_quantity=load_more_range)
+        return render_template('home.html', response=response, topic="Top Trending", news_quantity=load_more_range, request_url="/")
+
+
+@app.route('/topics/<string:topic>', methods=["GET", "POST"])
 def search_by_topics(topic):
     news_list = fetch_category_news(topic)
-    response = display_news(list_of_news=news_list,
-                            news_quantity=news_quantity)
-    return render_template('home.html', response=response, topic=topic.upper())
+    if request.method == "GET":
+        print(f"GET '/topics/{topic}'")
+        response = display_news(list_of_news=news_list,
+                                news_quantity=default_news_quantity)
+        return render_template('home.html', response=response, topic=topic.upper(), news_quantity=default_news_quantity, request_url="/topics/"+topic)
+
+    if request.method == "POST":
+        load_more_range = int(request.form.get('load_more_range'))
+        print(f"Loading more on '/topics/{topic}' with news quantity: {load_more_range}")
+        response = display_news(list_of_news=news_list,
+                                news_quantity=load_more_range)
+        return render_template('home.html', response=response, topic=topic.upper(), news_quantity=load_more_range, request_url="/topics/"+topic)
+
 
 @app.route('/search', methods=["GET","POST"])
 def search():
+    if request.method == "GET":
+        print("GET '/search'")
+        return render_template('home.html', request_url="/search")
+
     if request.method == "POST":
+        try:
+            load_more_range = int(request.form.get('load_more_range'))
+        except:
+            load_more_range = default_news_quantity
         topic = request.form.get('topic')
+        print(f"Searching for {topic} with news quantity: {load_more_range}")
         news_list = fetch_news_search_topic(topic)
         response = display_news(list_of_news=news_list,
-                                news_quantity=news_quantity)
-        return render_template('home.html', response=response, topic='Showing result for "'+topic+'"')
+                                news_quantity=load_more_range)
+        return render_template('home.html', response=response, topic=topic, news_quantity=load_more_range, request_url="/search")
+
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=3000,debug=True)

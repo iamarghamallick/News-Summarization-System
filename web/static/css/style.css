@@ -15,7 +15,7 @@ main {
 
 .news-card {
     padding: 5px;
-    background-color: #52599136;
+    background-color: #735d7e36;
     border-radius: 10px;
 }
 
@@ -55,7 +55,7 @@ main {
 }
 
 footer {
-    background: #525991;
+    background: #735d7e;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,7 +63,7 @@ footer {
     color: white;
 }
 
-.range-steps {
+.load_more {
     display: flex;
     justify-content: space-between;
 }
