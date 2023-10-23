@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen
 from newspaper import Article
+import nltk
+nltk.download('punkt')
 
 
 def fetch_news_search_topic(topic):
