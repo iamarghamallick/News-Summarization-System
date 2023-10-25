@@ -5,8 +5,8 @@ from newspaper import Article
 import nltk
 nltk.download('punkt')
 
-
 def fetch_news_search_topic(topic):
+    topic = topic.replace(" ", "%20")
     site = 'https://news.google.com/rss/search?q={}'.format(topic)
     op = urlopen(site)  # Open that site
     rd = op.read()  # read data from site
@@ -77,6 +77,11 @@ def display_news(list_of_news, news_quantity):
 
 
 app = Flask(__name__)
+
+@app.errorhandler(404)
+def not_found(e):
+    print(e)
+    return render_template('404.html')
 
 default_news_quantity = 2
 

@@ -48,9 +48,16 @@
         <input class="w-100" type="range" name="load_more_range" id="load_more_range" step="1" min="1" max="25"
             value="{{news_quantity}}">
         <div class="load_more text-light">
-            <span>1</span><span>5</span><span>10</span><span>15</span><span>20</span><span>25</span>
+            <span>01</span><span>05</span><span>10</span><span>15</span><span>20</span><span>25</span>
         </div>
     </form>
+</div>
+
+{% else %}
+
+<div class="container">
+    <a href="/"><img class="w-100 rounded" src="{{ url_for('static', filename='/images/403.png') }}"
+            alt="ERROR 403 : access denied or http request failed"></a>
 </div>
 
 {% endif %}
