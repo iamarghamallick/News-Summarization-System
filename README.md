@@ -1,9 +1,7 @@
-# News-Summarization-System
+![Slide1](https://github.com/iamarghamallick/News-Summarization-System/assets/86346861/d89e7a28-55e5-43da-a7e9-a0d24ffbabf7)
 
-## Demo: [https://newsbits.onrender.com/](https://newsbits.onrender.com/)
+![Slide2](https://github.com/iamarghamallick/News-Summarization-System/assets/86346861/a4d4d261-0191-46ce-9330-dd2f9375c4f0)
 
-![Screenshot (302)](https://github.com/iamarghamallick/News-Summarization-System/assets/86346861/826552bd-9a36-45f5-a5a6-8f7e68863eca)
+![Screenshot (353)](https://github.com/iamarghamallick/News-Summarization-System/assets/86346861/a15ed14c-2705-480a-b785-8cf87780d9da)
 
-![Screenshot (276)](https://github.com/iamarghamallick/News-Summarization-System/assets/86346861/eb0f720b-8efd-4dc1-849f-16aaacb09831)
-
-![Screenshot (277)](https://github.com/iamarghamallick/News-Summarization-System/assets/86346861/0fbd78a6-fa0f-4e93-b6e4-5ff09a07018d)
+![Screenshot (354)](https://github.com/iamarghamallick/News-Summarization-System/assets/86346861/f68f8d1b-7579-4f22-b60b-2121a781fcf9)
